@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
 
+import './layout.css'
+
 export default function Layout() {
   return (
-    <div>
+    <div className="container">
       <header>
         <h4>Bem vindo ao Game</h4>
       </header>
