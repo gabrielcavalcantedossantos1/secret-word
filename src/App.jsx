@@ -17,11 +17,13 @@ const stage = [
 ];
 
 export default function App() {
+  const [gameStage, setGameStage] = useState(stages[0].name);
 
-  
   return (
     <div className="App">
-      <StartScreen />
+      {gameStage === "start" && <StartScreen />}
+      {gameStage === "game" && <StartScreen />}
+      {gameStage === "end" && <StartScreen />}
     </div>
   );
 }
