@@ -8,22 +8,14 @@ import { useCallback, useEffect, useState } from "react";
 import { wordsList } from "./data/words";
 
 // components
-import StartScreen from "./components/StartScreen";
+import StartScreen from "./pages/StartScreen";
 
-const stage = [
-  { id: 1, name: "start" },
-  { id: 2, name: "game" },
-  { id: 3, name: "end" },
-];
 
 export default function App() {
-  const [gameStage, setGameStage] = useState(stages[0].name);
 
   return (
     <div className="App">
-      {gameStage === "start" && <StartScreen />}
-      {gameStage === "game" && <StartScreen />}
-      {gameStage === "end" && <StartScreen />}
+      
     </div>
   );
 }
