@@ -1,12 +1,20 @@
 import { Outlet } from "react-router-dom";
 
-import './layout.css'
+import "./layout.css";
+
+import github from "../../img/github-png.png";
 
 export default function Layout() {
   return (
     <div className="container">
       <header>
-        <h4>Bem vindo ao Game</h4>
+        <a
+          href="https://github.com/gabrielcavalcantedossantos1/secret-word"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={github} alt="github img" className="github-logo" />
+        </a>
       </header>
 
       <main>
