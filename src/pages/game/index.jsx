@@ -12,10 +12,16 @@ export default function Game() {
 
   function pickWordAndCategory() {
     const categories = Object.keys(words);
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    setPickedCategory(category);
+
+    const word = words[category][Math.floor(Math.random() * words[category].length)];
+    setPickedWord(word);
   }
 
   useEffect(() => {
     // escolher palavra e categoria
+    pickWordAndCategory();
   }, []);
 
   const navigate = useNavigate();
@@ -27,6 +33,7 @@ export default function Game() {
   return (
     <div>
       <h1>game</h1>
+      {pickedCategory} - {pickedWord}
       <button onClick={verifyLetter}>Finalizar jogo</button>
     </div>
   );
