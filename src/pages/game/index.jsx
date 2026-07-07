@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { wordsList } from "../../data/words";
 
+import './Game.css'
+
 import { useEffect, useState } from "react";
 
 export default function Game() {
