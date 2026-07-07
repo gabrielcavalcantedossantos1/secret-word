@@ -11,12 +11,22 @@ export default function Game() {
   const [letters, setLetters] = useState([]);
 
   function pickWordAndCategory() {
+    // escolher categoria aleatória
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * categories.length)];
-    setPickedCategory(category);
 
-    const word = words[category][Math.floor(Math.random() * words[category].length)];
+    // escolher palavra aleatória
+    const word =
+      words[category][Math.floor(Math.random() * words[category].length)];
+
+    // criar array de letras
+    let wordLetters = word.split("");
+    wordLetters = wordLetters.map((l) => l.toLowerCase());
+
+    // tirando as funções de setState do return, para não dar erro de renderização
+    setPickedCategory(category);
     setPickedWord(word);
+    setLetters(wordLetters);
   }
 
   useEffect(() => {
@@ -33,7 +43,7 @@ export default function Game() {
   return (
     <div>
       <h1>game</h1>
-      {pickedCategory} - {pickedWord}
+
       <button onClick={verifyLetter}>Finalizar jogo</button>
     </div>
   );
