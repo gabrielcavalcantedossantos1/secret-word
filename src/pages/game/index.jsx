@@ -12,6 +12,11 @@ export default function Game() {
   const [pickedCategory, setPickedCategory] = useState("");
   const [letters, setLetters] = useState([]);
 
+  const [guessedLetters, setGuessedLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
+  const [guesses, setGuesses] = useState(5);
+  const [score, setScore] = useState(0);
+
   function pickWordAndCategory() {
     // escolher categoria aleatória
     const categories = Object.keys(words);
@@ -45,15 +50,23 @@ export default function Game() {
   return (
     <div className="game">
       <p className="points">
-        <span>Pontuação: 000</span>
+        <span>Pontuação: {score}</span>
       </p>
       <h1>Adivinhe a palavra: </h1>
       <h3 className="tip">
         Dica sobre a palavra: <span>{pickedCategory}</span>
+        <p>Você tem {guesses} tentativa(s).</p>
       </h3>
       <div className="wordContainer">
-        <span className="letter">A</span>
-        <span className="blankSquare"></span>
+        {letters.map((letter, i) =>
+          guessedLetters.includes(letter) ? (
+            <span key={i} className="letter">
+              {letter}
+            </span>
+          ) : (
+            <span key={i} className="blankSquare"></span>
+          ),
+        )}
       </div>
       <div className="letterContainer">
         <p>Tente adivinhar a palavra!</p>
@@ -63,9 +76,10 @@ export default function Game() {
         </form>
       </div>
       <div className="wrongLettersContainer">
-        <p>Letras já digitadas:</p>
-        <span>a, </span>
-        <span>b</span>
+        {wrongLetters.length > 0 && <p>Letras já digitadas:</p>}
+        {wrongLetters.map((letter, i) => (
+          <span key={i}>{letter}, </span>
+        ))}
       </div>
     </div>
   );
