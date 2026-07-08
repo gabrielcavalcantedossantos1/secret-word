@@ -22,7 +22,10 @@ export default function Layout() {
       </main>
 
       <footer>
-        <p>Palavra Secreta © 2026 - Desenvolvido por <span>Gabriel Cavalcante</span></p>
+        <p>
+          Palavra Secreta © 2026 - Desenvolvido por{" "}
+          <span>Gabriel Cavalcante</span>
+        </p>
       </footer>
     </div>
   );
