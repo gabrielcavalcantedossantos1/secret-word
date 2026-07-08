@@ -19,3 +19,13 @@ footer span {
   color: #1e04e2;
   font-weight: bold;
 }
+
+main {
+  margin-top: 80px;
+}
+
+@media (max-width: 720px) {
+  main {
+    margin-top: 60px;
+  }
+}
