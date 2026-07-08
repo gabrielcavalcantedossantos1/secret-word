@@ -3,10 +3,14 @@ footer {
   bottom: 0;
 }
 
-.github-logo{
+.github-logo {
   width: 25px;
   height: 25px;
   padding: 15px;
   position: fixed;
   left: 0;
+}
+
+footer p {
+  color: #1e04e2;
 }
