@@ -14,3 +14,8 @@ footer {
 footer p {
   color: #1e04e2;
 }
+
+footer span {
+  color: #1e04e2;
+  font-weight: bold;
+}
