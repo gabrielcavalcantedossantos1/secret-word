@@ -15,15 +15,16 @@
   padding: 1.5rem;
   border: 20px solid #ecfa00;
   display: flex;
+  width: fit-content;
 }
 
 .letter,
 .blankSquare {
-  font-size: 70px;
+  font-size: clamp(20px, 7vw, 70px);
   line-height: 1.5;
   border: 3px solid #000;
-  height: 100px;
-  width: 100px;
+  height: clamp(25px, 10vw, 100px);
+  width: clamp(25px, 10vw, 100px);
   text-transform: uppercase;
   background-color: #fff;
   color: #000;
@@ -31,15 +32,8 @@
 }
 
 @media (max-width: 768px) {
-  .letter,
-  .blankSquare {
-    font-size: 20px;
-    height: 30px;
-    width: 30px;
-  }
-
   .wordContainer {
-    margin: 0.5rem;
+    margin: 0 auto;
     padding: 0.5rem;
     border: 10px solid #ecfa00;
   }
