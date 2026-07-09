@@ -46,10 +46,59 @@ export default function Game() {
     pickWordAndCategory();
   }, []);
 
+  useEffect(() => {
+    const uniqueLetters = [...new Set(letters)];
+
+    if (
+      letters.length > 0 &&
+      uniqueLetters.every((letter) => guessedLetters.includes(letter))
+    ) {
+      // limpa os estados
+      setGuessedLetters([]);
+      setWrongLetters([]);
+
+      // escolhe uma nova palavra
+      pickWordAndCategory();
+
+      // reinicia as tentativas
+      setGuesses(5);
+    }
+  }, [guessedLetters, letters]);
+
   // verificando a letra do input
-  function verifyLetter() {
-    console.log(letter);
+  function verifyLetter(letter) {
+    const normalizedLetter = letter.toLowerCase();
+
+    // checando se a letra já foi utilizada
+    if (
+      guessedLetters.includes(normalizedLetter) ||
+      wrongLetters.includes(normalizedLetter)
+    ) {
+      return;
+    }
+
+    // incluir a letra na lista de letras corretas ou erradas
+    if (letters.includes(normalizedLetter)) {
+      setGuessedLetters((acc) => [...acc, normalizedLetter]);
+      setScore((prevScore) => prevScore + 100);
+    } else {
+      setWrongLetters((acc) => [...acc, normalizedLetter]);
+
+      setGuesses((prevGuesses) => prevGuesses - 1);
+    }
   }
+
+  // monitorando o estado de tentativas
+  useEffect(() => {
+    if (guesses <= 0) {
+      navigate("/end", { state: { score, pickedWord } });
+
+      // limpar todos os estados
+      setGuessedLetters([]);
+      setWrongLetters([]);
+      setGuesses(5);
+    }
+  }, [guesses]);
 
   function handleSubmit(e) {
     e.preventDefault();
