@@ -3,7 +3,7 @@ import { wordsList } from "../../data/words";
 
 import "./style.css";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Game() {
   const [words] = useState(wordsList);
@@ -16,6 +16,10 @@ export default function Game() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [guesses, setGuesses] = useState(5);
   const [score, setScore] = useState(0);
+
+  const [letter, setLetter] = useState("");
+
+  const letterInputRef = useRef(null);
 
   function pickWordAndCategory() {
     // escolher categoria aleatória
@@ -36,16 +40,24 @@ export default function Game() {
     setLetters(wordLetters);
   }
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // escolher palavra e categoria
     pickWordAndCategory();
   }, []);
 
-  const navigate = useNavigate();
-
   // verificando a letra do input
   function verifyLetter() {
-    navigate("/end");
+    console.log(letter);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    verifyLetter(letter);
+
+    setLetter("");
+    letterInputRef.current.focus();
   }
   return (
     <div className="game">
@@ -54,7 +66,7 @@ export default function Game() {
       </p>
       <h1>Adivinhe a palavra: </h1>
       <h3 className="tip">
-        Dica sobre a palavra: <span>{pickedCategory}</span>
+        Sugestão: <span>{pickedCategory}</span>
         <p>Você tem {guesses} tentativa(s).</p>
       </h3>
       <div className="wordContainer">
@@ -70,8 +82,16 @@ export default function Game() {
       </div>
       <div className="letterContainer">
         <p>Tente adivinhar a palavra!</p>
-        <form>
-          <input type="text" name="letter" maxLength={1} required />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="letter"
+            maxLength={1}
+            required
+            onChange={(e) => setLetter(e.target.value)}
+            value={letter}
+            ref={letterInputRef}
+          />
           <button>Jogar!</button>
         </form>
       </div>
